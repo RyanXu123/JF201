@@ -28,6 +28,8 @@ public class AiCmd_201_controller {
 
         return list;
 
+
+
     }
     @CrossOrigin
     @PostMapping("/getData/201/aicmd_history")
