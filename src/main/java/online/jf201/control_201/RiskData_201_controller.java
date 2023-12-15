@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.*;
 
 @Controller
-public class RiskData_203_controller {
+public class RiskData_201_controller {
 
     @Autowired
     private JdbcTemplate jdbc;
@@ -21,18 +21,18 @@ public class RiskData_203_controller {
 
 
     @CrossOrigin
-    @RequestMapping("/getData/203/riskdatanew0216")
+    @RequestMapping("/getData/201/riskdatanew0216")
     @ResponseBody
 //    @Scheduled(fixedRate = 30000)
-    public List<Map<String,Object>> getdata203_p2(){
+    public List<Map<String,Object>> getdata201_p2(){
 
         List <Map<String,Object>> list_data= new ArrayList<>();  //储存返回的json
         Map<String, Object> data = new HashMap<String, Object>();
 
-        List<String> server = Arrays.asList("A","B","C","D","E","F","G","H","J","K");
-        String sql="select Value0 from realdata_once where Location='JF203' and Equipment='服务器A' and SiteName='A1-上' limit 0,1";
+        List<String> server = Arrays.asList("A","B","C","D","E","F","G","H");
+        String sql="select Value0 from realdata_once where Location='JF201' and Equipment='服务器A' and SiteName='A1-上' limit 0,1";
 
-        String sql1="select * from realdata_once where Location='JF203' and Equipment='服务器'";
+        String sql1="select * from realdata_once where Location='JF201' and Equipment='服务器'";
 
         Map<String, Object> servers_cold= new TreeMap<>();  //所有列列服务器冷通道
         Map<String, Object> servers_hot= new TreeMap<>();  //某列服务器冷通道

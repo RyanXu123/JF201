@@ -1,4 +1,4 @@
-package online.jf203.control_203;
+package online.jf201.control_201;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class LogsSelect_203_controller {
+public class LogsSelect_201_controller {
     @Autowired
     private JdbcTemplate jdbc;
 
     @CrossOrigin
-    @RequestMapping("/getData/203/logs")
+    @RequestMapping("/getData/201/logs")
     @ResponseBody
 //    @Scheduled(fixedRate = 30000)
     public List<Map<String, Object>> LogsSelect() {

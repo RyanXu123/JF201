@@ -1,20 +1,21 @@
-package online.jf204.control_204;
+package online.jf201.control_201;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.alibaba.fastjson2.JSONObject;
+import online.jf201.entity.log;
+import online.jf201.mapper.logMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import online.jf204.entity.log;
-import online.jf204.service.logService;
-import online.jf204.mapper.logMapper;
-import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
-public class aiparamsNew_204_controller {
+public class aiparamsNew_201_controller {
     @Autowired
     private logMapper logMapper;
 
@@ -27,10 +28,10 @@ public class aiparamsNew_204_controller {
 
 
     @CrossOrigin
-    @PostMapping("/getData/204/aiparams-1")
+    @PostMapping("/getData/201/aiparams-1")
     @ResponseBody
 //    @Scheduled(fixedRate = 30000)
-    public Map<String, Object> getdata204_aiparams1(@RequestBody JSONObject data){
+    public Map<String, Object> getdata201_aiparams1(@RequestBody JSONObject data){
 
 
             Map<String, Object> ret = new LinkedHashMap<>();
@@ -87,7 +88,7 @@ public class aiparamsNew_204_controller {
             }
             //写入数据库
             log logs = new log();
-            logs.setDatacenter_room("JF204");
+            logs.setDatacenter_room("JF201");
             logs.setContent(key + newValue);
             logs.setUserName(userName);
             logs.setUserRole(userRole);
@@ -98,7 +99,7 @@ public class aiparamsNew_204_controller {
             /*
             使用lambdaquerywrapper构建查询条件
             LambdaQueryWrapper<log> wrapper = new LambdaQueryWrapper<>();
-            wrapper.eq(log::getDatacenter_room, "JF204")
+            wrapper.eq(log::getDatacenter_room, "JF201")
                     .eq(log::getContent, key + newValue)
                     .eq(log::getUserName, userName)
                     .eq(log::getUserRole, userRole)
@@ -112,7 +113,7 @@ public class aiparamsNew_204_controller {
     String time="0";
     String restart="0";
     @CrossOrigin
-    @PostMapping("/getData/204/aicontrol-1")
+    @PostMapping("/getData/201/aicontrol-1")
     @ResponseBody
 //    @Scheduled(fixedRate = 30000)
     public List<String> aicontrol2(@RequestBody List<String> data) {
@@ -130,7 +131,7 @@ public class aiparamsNew_204_controller {
             rebootlog = "一键恢复开启";
             if (!restartTemp.equals(restart)){
                 log log1 = new log();
-                log1.setDatacenter_room("JF204");
+                log1.setDatacenter_room("JF201");
                 log1.setContent(rebootlog);
                 log1.setUserName(userName);
                 log1.setUserRole(userRole);
@@ -143,7 +144,7 @@ public class aiparamsNew_204_controller {
             rebootlog = "一键恢复关闭";
             if (!restartTemp.equals(restart)){
                 log log1 = new log();
-                log1.setDatacenter_room("JF204");
+                log1.setDatacenter_room("JF201");
                 log1.setContent(rebootlog);
                 log1.setUserName(userName);
                 log1.setUserRole(userRole);
@@ -159,7 +160,7 @@ public class aiparamsNew_204_controller {
             aiopenlog = "AI开启";
             if (!openAiTemp.equals(openAi)){
                 log log2 = new log();
-                log2.setDatacenter_room("JF204");
+                log2.setDatacenter_room("JF201");
                 log2.setContent(aiopenlog);
                 log2.setUserName(userName);
                 log2.setUserRole(userRole);
@@ -171,7 +172,7 @@ public class aiparamsNew_204_controller {
             aiopenlog = "AI关闭";
             if (!openAiTemp.equals(openAi)){
                 log log2 = new log();
-                log2.setDatacenter_room("JF204");
+                log2.setDatacenter_room("JF201");
                 log2.setContent(aiopenlog);
                 log2.setUserName(userName);
                 log2.setUserRole(userRole);

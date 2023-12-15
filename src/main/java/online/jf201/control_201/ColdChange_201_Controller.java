@@ -1,7 +1,9 @@
 package online.jf201.control_201;
 
-import online.jf203.entity.Alert;
-import online.jf203.service.AlertService;
+import online.jf201.entity.Alert;
+import online.jf201.service.AlertService;
+import online.jf201.entity.log;
+import online.jf201.mapper.logMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -9,26 +11,28 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 @Controller
-public class ColdChange_203_Controller {
+public class ColdChange_201_Controller {
     @Autowired
     private JdbcTemplate jdbc;
     @Autowired
     private AlertService alertservice;
+    @Autowired
+    private logMapper logMapper;
 
     Double cold_unstable_fixed_time=10.0;
     Double cold_unstable_fixed_range=3.0;
     @CrossOrigin
-    @RequestMapping("/getData/203/realdata/coldsite_change")
+    @RequestMapping("/getData/201/realdata/coldsite_change")
     @ResponseBody
     public List<Map<String,Object>> coldsite_change(){
 
         Double cold_unstable_fixed_time_real=cold_unstable_fixed_time*2;
 
         List <Map<String,Object>> list_data= new ArrayList<>();  //储存返回的json
-        List<String> server = Arrays.asList("A","B","C","D","E","F","G","H","J","K","D");
+        List<String> server = Arrays.asList("A","B","C","D","E","F","G","H");
         Collections.reverse(server);//从P开始排序
-        String sql_penultimate="select * from realdata_once where Location='JF203' and Equipment='服务器' and PointName='冷通道温度'  and time = ( SELECT time FROM realdata_once order by time desc limit 1 OFFSET 60)"; //60数据间隔
-        String sql_last="select * from realdata_once where Location='JF203' and Equipment='服务器' and PointName='冷通道温度' and time = ( SELECT MAX(time) FROM realdata_once)"; //19测点x3+功率
+        String sql_penultimate="select * from realdata_once where Location='JF201' and Equipment='服务器' and PointName='冷通道温度'  and time = ( SELECT time FROM realdata_once order by time desc limit 1 OFFSET 60)"; //60数据间隔
+        String sql_last="select * from realdata_once where Location='JF201' and Equipment='服务器' and PointName='冷通道温度' and time = ( SELECT MAX(time) FROM realdata_once)"; //19测点x3+功率
         sql_penultimate.replace("60",cold_unstable_fixed_time_real.toString());
         Map<String, Object> servers_cold= new TreeMap<>();  //所有列列服务器冷通道
         Integer siteNum=19;//测点个数
@@ -63,7 +67,7 @@ public class ColdChange_203_Controller {
                             Alert alert0 = new Alert();
                             alert0.setContent(list_penultimate.get(i).get("SiteName").toString()+"波动"+String.format("%.2f",Math.abs(gap))+"度");
                             alert0.setEquipment(list_penultimate.get(i).get("Equipment").toString().substring(3));
-                            alert0.setLocation("FT203");
+                            alert0.setLocation("FT201");
                             alert0.setSampleTime(list_penultimate.get(i).get("time").toString());
                             alertservice.save(alert0);
                         }
@@ -77,7 +81,7 @@ public class ColdChange_203_Controller {
                             Alert alert0 = new Alert();
                             alert0.setContent(list_penultimate.get(i).get("SiteName").toString()+"波动"+String.format("%.2f",Math.abs(gap))+"度");
                             alert0.setEquipment(list_penultimate.get(i).get("Equipment").toString().substring(3));
-                            alert0.setLocation("FT203");
+                            alert0.setLocation("FT201");
                             alert0.setSampleTime(list_penultimate.get(i).get("time").toString());
                             alertservice.save(alert0);
                         }
@@ -103,7 +107,7 @@ public class ColdChange_203_Controller {
 
 
     @CrossOrigin
-    @RequestMapping("/getData/203/realdata/cold_detect_design")
+    @RequestMapping("/getData/201/realdata/cold_detect_design")
     @ResponseBody
     public List<Double> cold_detect_design(){
         List<Double> ret=new ArrayList<>();
@@ -113,12 +117,75 @@ public class ColdChange_203_Controller {
     }
 
     @CrossOrigin
-    @PostMapping("/getData/203/realdata/cold_detect_design")
+    @PostMapping("/getData/201/realdata/cold_detect_design")
     @ResponseBody
-    public List<Double> cold_detect_design2(@RequestBody List<Double>data ){
-//        List<Double> ret=new ArrayList<>();
-        cold_unstable_fixed_range=data.get(0);
-        cold_unstable_fixed_time=data.get(1);
+    public List<Object> cold_detect_design2(@RequestBody List<Object> data){
+        String coldfluctuationtimeLog = "";
+        String coldfluctuationRangeLog = "";
+
+        Double coldfluctuationRange = (Double) data.get(0);
+        Double coldfluctuationTime = (Double) data.get(1);
+
+        String userName = data.get(2).toString();
+        String userRole = data.get(3).toString();
+        String time_operate = data.get(4).toString();
+
+        if (coldfluctuationRange.equals("3.0")) {
+            coldfluctuationRangeLog = "冷通道波动范围阈值未改变";
+            if (!coldfluctuationRange.equals(cold_unstable_fixed_range)){
+                log log1 = new log();
+                log1.setDatacenter_room("JF201");
+                log1.setContent( coldfluctuationRangeLog);
+                log1.setUserName(userName);
+                log1.setUserRole(userRole);
+                log1.setTime(time_operate);
+
+                logMapper.insert(log1);
+            }
+
+        } else if (!coldfluctuationRange.equals("3.0")) {
+            coldfluctuationRangeLog ="冷通道波动范围阈值改变为";
+            if (!coldfluctuationRange.equals(cold_unstable_fixed_range)){
+                log log1 = new log();
+                log1.setDatacenter_room("JF201");
+                log1.setContent(coldfluctuationRangeLog + "为" + coldfluctuationRange);
+                log1.setUserName(userName);
+                log1.setUserRole(userRole);
+                log1.setTime(time_operate);
+
+                logMapper.insert(log1);
+            }
+        }
+        cold_unstable_fixed_range = coldfluctuationRange;
+
+        if (coldfluctuationTime.equals("10.0")) {
+            coldfluctuationtimeLog = "冷通道波动时间阈值未改变";
+            if (!coldfluctuationTime.equals(cold_unstable_fixed_time)){
+                log log1 = new log();
+                log1.setDatacenter_room("JF201");
+                log1.setContent(coldfluctuationtimeLog);
+                log1.setUserName(userName);
+                log1.setUserRole(userRole);
+                log1.setTime(time_operate);
+
+                logMapper.insert(log1);
+            }
+
+        } else if (!coldfluctuationTime.equals("10.0")) {
+            coldfluctuationtimeLog ="冷通道波动时间阈值改变";
+            if (!coldfluctuationTime.equals(cold_unstable_fixed_time)){
+                log log1 = new log();
+                log1.setDatacenter_room("JF201");
+                log1.setContent(coldfluctuationtimeLog+"为"+ coldfluctuationTime);
+                log1.setUserName(userName);
+                log1.setUserRole(userRole);
+                log1.setTime(time_operate);
+
+                logMapper.insert(log1);
+            }
+        }
+        cold_unstable_fixed_time = coldfluctuationTime;
         return data;
+
     }
 }

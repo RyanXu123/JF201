@@ -1,9 +1,9 @@
-package online.jf204.service.impl;
+package online.jf201.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import online.jf204.entity.log;
-import online.jf204.mapper.logMapper;
-import online.jf204.service.logService;
+import online.jf201.entity.log;
+import online.jf201.mapper.logMapper;
+import online.jf201.service.logService;
 import org.springframework.stereotype.Service;
 
 @Service

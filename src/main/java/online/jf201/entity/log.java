@@ -1,4 +1,4 @@
-package online.jf204.entity;
+package online.jf201.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;

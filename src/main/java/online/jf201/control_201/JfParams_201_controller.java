@@ -13,16 +13,16 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class JfParams_203_controller {
+public class JfParams_201_controller {
     @Autowired
     private JdbcTemplate jdbc;
 
 
     @CrossOrigin
-    @RequestMapping("/getData/203/aipreparams")
+    @RequestMapping("/getData/201/aipreparams")
     @ResponseBody
 //    @Scheduled(fixedRate = 30000)
-    public List<Map<String,Object>> getdata203_ai(){
+    public List<Map<String,Object>> getdata201_ai(){
         String sql="select * from aipreparams";
         List <Map<String,Object>> list=jdbc.queryForList(sql);
         List <Map<String,Object>> list1=new ArrayList<>();
@@ -40,10 +40,10 @@ public class JfParams_203_controller {
 
 
     @CrossOrigin
-    @RequestMapping("/getData/203/jfparams")
+    @RequestMapping("/getData/201/jfparams")
     @ResponseBody
     @Scheduled(fixedRate = 30000)
-    public List<Map<String,Object>> getdata203_ai2(){
+    public List<Map<String,Object>> getdata201_ai2(){
         String sql="select * from aipreparams";
         List <Map<String,Object>> list=jdbc.queryForList(sql);
         List <Map<String,Object>> list1=new ArrayList<>();

@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @Controller
-public class PreShow_203_controller {
+public class PreShow_201_controller {
 
 
     @Autowired
     private JdbcTemplate jdbc;
 
     @CrossOrigin
-    @PostMapping("/getData/203/preshownew")
+    @PostMapping("/getData/201/preshownew")
     @ResponseBody
 //    @Scheduled(fixedRate = 30000)
     public Map<String,Object> preshownew2(@RequestBody List<List<String>> data) {//一个时刻68个数据
@@ -99,7 +99,7 @@ public class PreShow_203_controller {
 
 
     @CrossOrigin
-    @RequestMapping("/getData/203/preshownew")
+    @RequestMapping("/getData/201/preshownew")
     @ResponseBody
 //    @Scheduled(fixedRate = 30000)
     public Map<String,Object> preshownew() {//一个时刻68个数据

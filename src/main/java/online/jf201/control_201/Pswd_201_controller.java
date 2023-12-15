@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class Pswd_203_controller {
+public class Pswd_201_controller {
     @Autowired
     private JdbcTemplate jdbc;
 
     @CrossOrigin
-    @PostMapping("/203/password")
+    @PostMapping("/201/password")
     @ResponseBody
     public Boolean pswdcontroller(@RequestBody String data){
 //        String sql="select * from user where UserName=xx";

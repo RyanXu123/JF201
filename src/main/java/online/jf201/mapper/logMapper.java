@@ -1,7 +1,7 @@
-package online.jf204.mapper;
+package online.jf201.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import online.jf204.entity.log;
+import online.jf201.entity.log;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

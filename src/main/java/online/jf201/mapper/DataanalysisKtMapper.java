@@ -1,7 +1,7 @@
-package online.jf203.mapper;
+package online.jf201.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import online.jf203.entity.Dataanalysis_kt;
+import online.jf201.entity.Dataanalysis_kt;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

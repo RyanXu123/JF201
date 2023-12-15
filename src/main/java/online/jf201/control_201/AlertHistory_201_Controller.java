@@ -1,19 +1,19 @@
-package online.jf203.control_203;
+package online.jf201.control_201;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import online.jf203.entity.Alert;
-import online.jf203.service.AlertService;
+import online.jf201.entity.Alert;
+import online.jf201.service.AlertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
-public class AlertHistory_203_Controller {
+public class AlertHistory_201_Controller {
     @Autowired
     private AlertService alertservice;
     @CrossOrigin
-    @RequestMapping("/getData/203/alert_history")
+    @RequestMapping("/getData/201/alert_history")
     @ResponseBody
     public List<Alert> alert_history(){
         LambdaQueryWrapper<Alert> andWrapper = new LambdaQueryWrapper<>();
@@ -24,7 +24,7 @@ public class AlertHistory_203_Controller {
     }
 
     @CrossOrigin
-    @PostMapping("/getData/203/alert_history")
+    @PostMapping("/getData/201/alert_history")
     @ResponseBody
     public List<Alert> alert_history(@RequestBody List<String> data){
         String start_time=data.get(0);

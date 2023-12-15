@@ -1,8 +1,8 @@
-package online.jf204.control_204;
+package online.jf201.control_201;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import online.jf204.entity.log;
-import online.jf204.service.logService;
+import online.jf201.entity.log;
+import online.jf201.service.logService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import java.util.List;
 
 
 @Controller
-public class logNew_204_controller {
+public class logNew_201_controller {
     @Autowired
     private logService logservice;
     @CrossOrigin
-    @RequestMapping("/getData/204/logs/out-1")
+    @RequestMapping("/getData/201/logs/out-1")
     @ResponseBody
     public List<log> LogsSelect(){
         LambdaQueryWrapper<log> andWrapper = new LambdaQueryWrapper<>();
@@ -27,7 +27,7 @@ public class logNew_204_controller {
     /***************/
 
     @CrossOrigin
-    @PostMapping("/getData/204/logs-1")
+    @PostMapping("/getData/201/logs-1")
     @ResponseBody
     public List<log> logsSelectOne(@RequestBody List<String> data) {
         String start_time = data.get(0);

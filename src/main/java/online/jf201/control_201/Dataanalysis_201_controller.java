@@ -2,11 +2,11 @@
 package online.jf201.control_201;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import online.jf203.dto.KtDto;
-import online.jf203.entity.Dataanalysis_kt;
-import online.jf203.entity.Dataanalysis_server;
-import online.jf203.service.DataanalysisKtService;
-import online.jf203.service.DataanalysisServerService;
+import online.jf201.dto.KtDto;
+import online.jf201.entity.Dataanalysis_kt;
+import online.jf201.entity.Dataanalysis_server;
+import online.jf201.service.DataanalysisKtService;
+import online.jf201.service.DataanalysisServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-public class Dataanalysis_203_controller {
+public class Dataanalysis_201_controller {
     @Autowired
     DataanalysisKtService dataService;
     @Autowired
@@ -25,7 +25,7 @@ public class Dataanalysis_203_controller {
     String time_end = "2023-11-11 00:00:00";
 
     @CrossOrigin
-    @RequestMapping("/getData/203/dataanalysisnew")
+    @RequestMapping("/getData/201/dataanalysisnew")
     @ResponseBody
     public List<Map<String, Object>> showAnalysis() {
 
@@ -101,7 +101,7 @@ public class Dataanalysis_203_controller {
     }
 
     @CrossOrigin
-    @PostMapping("/getData/203/dataanalysisnew0311")
+    @PostMapping("/getData/201/dataanalysisnew0311")
     @ResponseBody
 //        @Scheduled(fixedRate = 30000)
     public List<Map<String, Object>> dataanalysisnew(@RequestBody List<List<String>> data) {
@@ -219,7 +219,7 @@ public class Dataanalysis_203_controller {
 
 
     @CrossOrigin
-    @RequestMapping("/getData/203/dataanalysisnew0311")
+    @RequestMapping("/getData/201/dataanalysisnew0311")
     @ResponseBody
     public List<Map<String, Object>> dataanalysisnew2() {
 

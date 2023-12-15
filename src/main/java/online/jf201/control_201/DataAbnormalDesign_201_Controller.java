@@ -3,12 +3,12 @@ package online.jf201.control_201;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class DataAbnormalDesign_203_Controller {
+public class DataAbnormalDesign_201_Controller {
 
 //    Integer time_limit=6;
 //    //    Integer time_limit=6;
 //    @CrossOrigin
-//    @PostMapping("/getData/203/dataStatus_time_limit_design")
+//    @PostMapping("/getData/201/dataStatus_time_limit_design")
 //    @ResponseBody
 ////    @Scheduled(fixedRate = 30000)
 //    public Integer time_limit_design(@RequestBody List<String> data) {
